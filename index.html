@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan/Kajian Pergeseran Anggaran</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="header-judul">
+    <h1>BIDANG ANGGARAN</h1>
+    <h2>BADAN KEUANGAN DAERAH KABUPATEN KARANGANYAR</h2>
+</div>
+
+<div class="container">
+    <!-- PILIH JENIS SURAT -->
+    <div class="form" style="margin-bottom:20px;">
+        <label>Pilih Jenis Surat</label>
+        <select id="jenisSurat" onchange="gantiJenisSurat()">
+            <option value="">-- Pilih Jenis Surat --</option>
+            <option value="pergeseran">Surat Pergeseran Anggaran</option>
+        </select>
+    </div>
+
+    <!-- FORM KIRI-KANAN -->
+    <div class="form-wrapper" id="isiSuratWrapper"  style="display:none;">
+        <!-- KIRI: YTH & detail surat -->
+        <div class="form kolom-kiri">
+            <h3>Isi Surat</h3>
+            <label>Yth.</label>
+            <input id="yth" placeholder="Isi tujuan surat">
+            <label>Lewat</label>
+            <input id="lewat" placeholder="Isi perantara surat">
+            <label>Dari</label>
+            <input id="dari" placeholder="Isi pengirim surat">
+            <label>Tanggal</label>
+            <input id="tanggal" placeholder="TGL BLN TH">
+            <label>Nomor</label>
+            <input id="nomor" placeholder="900/25/I/2026">
+            <label>Sifat</label>
+            <input id="sifat" placeholder="Contoh: Penting">
+            <label>Lampiran</label>
+            <input id="lampiran" placeholder="-">
+            <label>Hal</label>
+            <input id="hal" placeholder="Judul perihal surat">
+            <label>Nama Kecamatan</label>
+            <input id="kecamatan" placeholder="Contoh: Ngargoyoso">
+            <label>Sub Kegiatan</label>
+            <input id="kegiatan" placeholder="Nama sub kegiatan">
+        </div>
+
+        <!-- KANAN: Pengaturan Cetak -->
+        <div class="form kolom-kanan">
+            <h3>Pengaturan Cetak</h3>
+            <label>Ukuran Kertas</label>
+            <select id="ukuranKertas">
+                <option value="A4">A4</option>
+                <option value="F4">F4</option>
+                <option value="Letter">Letter</option>
+            </select>
+            <label>Font</label>
+            <select id="font">
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Arial">Arial</option>
+                <option value="Calibri">Calibri</option>
+            </select>
+            <label>Spasi Baris</label>
+            <select id="lineSpacing">
+                <option value="1">1</option>
+                <option value="1.15">1.15</option>
+                <option value="1.5" selected>1.5</option>
+                <option value="2">2</option>
+            </select>
+            <label>Ukuran Font</label>
+            <input id="fontSize" type="number" value="12">
+            <label>Margin Atas (mm)</label>
+            <input id="marginAtas" type="number" value="50">
+            <label>Margin Bawah (mm)</label>
+            <input id="marginBawah" type="number" value="25">
+            <label>Margin Kiri (mm)</label>
+            <input id="marginKiri" type="number" value="30">
+            <label>Margin Kanan (mm)</label>
+            <input id="marginKanan" type="number" value="15">
+
+            <div class="paraf-box">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="pakaiParaf">
+                    <span>Gunakan Paraf Koordinasi</span>
+                </label>
+
+                <label>Jumlah Pejabat</label>
+                <input id="jumlahPejabat" type="number" min="1" value="1">
+
+                <div id="daftarPejabat"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOMBOL BUAT SURAT -->
+    <button onclick="buatSurat()" id="btnBuatSurat" style="margin-top:15px; display:none;">Buat Surat</button>
+
+    <!-- HASIL SURAT -->
+    <div id="hasilSection" style="display:none; margin-top:30px;">
+        <h3>Hasil Surat</h3>
+        <div id="hasilSurat" class="preview"></div>
+
+        <button id="btnCetak" onclick="cetakSurat()" style="display:none;">Cetak Surat</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
